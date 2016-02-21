@@ -1,0 +1,26 @@
+######################################################
+####### Original dataset provided by Walmart #########
+######################################################
+TripType - a categorical id representing the type of shopping trip the customer made. This is the ground truth that you are predicting. TripType_999 is an "other" category. (38 different kinds of categories in total)
+VisitNumber - an id corresponding to a single trip by a single customer
+Weekday - the weekday of the trip (monday to sunday)
+Upc - the UPC number of the product purchased 
+ScanCount - the number of the given item that was purchased. A negative value indicates a product return.
+DepartmentDescription - a high-level description of the item's department
+FinelineNumber - a more refined category for each of the products, created by Walmart
+
+## A single VisitNumber has multiple rows. Each row is an item bought during the visit. A visit with multiple items bought will have multiple rows
+## Efforts need to be made to flatten the original train dataset.
+
+######################################################
+########### My dataset in my final model #############
+######################################################
+a) Weekday: Which day of the week (monday to friday). Dummy variable for each day.
+b) Department Description: There are many kinds of department. Each department is a dummy variable forming a column.
+c) finelinenumber: There are also many finelinenumber. Each finelinenumber is a dummy variable forming a column.
+d) gotReturn: A dummy variable for trips with returned items. 1 for a trip consisting of at least a returned item. 0 for no returned item.
+e) Weekdayend: A dummy variable for weekend or weekday trips. 1 for weekday, 0 for weekend.
+f) number of items bought: A naive sum of the number of items bought. I believe that a deliberate trip to walmart will consist of more items bought, thus differentiating certain trips.
+g) number of unique department description: A naive unique count of the number of department descriptions for that visit. A deliberate family trip will consist of more department descriptions. A short trip with an item in mind will have less.
+h) number of unique UPC: A naive unique count of the number of Upc.
+i) number of unique finelinenumber: A naive unique count of the number of type of finelinenumber. 
